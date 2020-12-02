@@ -1,0 +1,105 @@
+using AdventOfCode.Tools;
+using System.IO;
+using System;
+
+namespace AdventOfCode.Days
+{
+    public class DayTwo : Day
+    {
+        private struct PasswordData
+        {
+            public int MinOccurance { get; private set; }
+            public int MaxOccurance { get; private set; }
+            public char CharToCheck { get; private set; }
+            public string Password { get; private set; }
+
+            public PasswordData(int minOccurance, int maxOccurance, char charToCheck, string password)
+            {
+                MinOccurance = minOccurance;
+                MaxOccurance = maxOccurance;
+                CharToCheck = charToCheck;
+                Password = password;
+            }
+        }
+
+        private PasswordData[] passwordDatas;
+
+        public override void Initialize()
+        {
+            Debug.Info("----------------Initializing day two...");
+
+            var file = File.ReadAllLines(@".\Days\Data\DayTwo.txt");
+            passwordDatas = new PasswordData[file.Length];
+
+            for (int i = 0; i < file.Length; i++)
+            {
+
+                string[] splitLine = file[i].Split(' ');
+
+                string[] numbers = splitLine[0].Split('-');
+                int minOccurance = int.Parse(numbers[0]);
+                int maxOccurance = int.Parse(numbers[1]);
+
+                string[] chars = splitLine[1].Split(':');
+                char charToCheck = chars[0].ToCharArray()[0];
+
+                string password = splitLine[2];
+
+                passwordDatas[i] = new PasswordData(minOccurance, maxOccurance, charToCheck, password);
+            }
+
+            StarOne();
+            StarTwo();
+        }
+
+
+        protected override void StarOne()
+        {
+            int rightPasswords = 0;
+
+            for (int i = 0; i < passwordDatas.Length; i++)
+            {
+                int occurance = 0;
+
+                foreach (char character in passwordDatas[i].Password)
+                {
+                    if (character != passwordDatas[i].CharToCheck) continue;
+
+                    occurance++;
+                }
+
+                if (occurance < passwordDatas[i].MinOccurance || occurance > passwordDatas[i].MaxOccurance) continue;
+
+                rightPasswords++;
+            }
+
+            Console.WriteLine($"STAR ONE: Awnser: {rightPasswords}");
+        }
+
+        protected override void StarTwo()
+        {
+            int rightPasswords = 0;
+
+            for (int i = 0; i < passwordDatas.Length; i++)
+            {
+                int occurance = 0;
+                char[] passwordAsArray = passwordDatas[i].Password.ToCharArray();
+
+                if (passwordDatas[i].CharToCheck == passwordAsArray[passwordDatas[i].MinOccurance - 1])
+                {
+                    occurance++;
+                }
+                if (passwordDatas[i].CharToCheck == passwordAsArray[passwordDatas[i].MaxOccurance - 1])
+                {
+                    occurance++;
+                }
+
+                if (occurance != 1) continue;
+
+                rightPasswords++;
+            }
+
+            Console.WriteLine($"STAR TWO: Awnser: {rightPasswords}");
+        }
+    }
+}

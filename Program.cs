@@ -10,8 +10,11 @@ namespace AdventOfCode
             var dayOne = new DayOne();
             dayOne.Initialize();
 
-            var DayTwo = new DayTwo();
-            DayTwo.Initialize();
+            var dayTwo = new DayTwo();
+            dayTwo.Initialize();
+
+            var dayThree = new DayThree();
+            dayThree.Initialize();
         }
     }
 }

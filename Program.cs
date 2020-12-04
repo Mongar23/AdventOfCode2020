@@ -1,5 +1,4 @@
-﻿using System;
-using AdventOfCode.Days;
+﻿using AdventOfCode.Days;
 
 namespace AdventOfCode
 {
@@ -15,6 +14,9 @@ namespace AdventOfCode
 
             var dayThree = new DayThree();
             dayThree.Initialize();
+
+            var dayFour = new DayFour();
+            dayFour.Initialize();
         }
     }
 }

@@ -17,5 +17,12 @@ namespace AdventOfCode.Tools
             Console.WriteLine($"[INFO] {message}");
             Console.ResetColor();
         }
+
+        public static void Waring(string message)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine($"[WARNING] {message}");
+            Console.ResetColor();
+        }
     }
 }

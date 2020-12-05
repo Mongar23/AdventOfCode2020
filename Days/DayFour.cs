@@ -15,7 +15,7 @@ namespace AdventOfCode.Days
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day three...");
+            Debug.Info("----------------Initializing day four...");
 
             string file = File.ReadAllText(@".\Days\Data\DayFour.txt");
             data = file.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);

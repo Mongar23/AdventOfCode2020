@@ -17,6 +17,9 @@ namespace AdventOfCode
 
             var dayFour = new DayFour();
             dayFour.Initialize();
+
+            var dayFive = new DayFive();
+            dayFive.Initialize();
         }
     }
 }

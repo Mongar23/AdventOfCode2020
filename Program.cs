@@ -20,6 +20,9 @@ namespace AdventOfCode
 
             var dayFive = new DayFive();
             dayFive.Initialize();
+
+            var daySix = new DaySix();
+            daySix.Initialize();
         }
     }
 }

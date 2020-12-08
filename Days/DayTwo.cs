@@ -1,11 +1,9 @@
-using AdventOfCode.Tools;
-using System.IO;
-using System;
-
 namespace AdventOfCode.Days
 {
-    public class DayTwo : Day
+    public class DayTwo : DayBase
     {
+        public override int Number => 2;
+
         private struct PasswordData
         {
             public int MinOccurance { get; private set; }
@@ -26,9 +24,7 @@ namespace AdventOfCode.Days
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day two...");
-
-            var file = File.ReadAllLines(@".\Days\Data\DayTwo.txt");
+            string[] file = GetInputAsLines();
             passwordDatas = new PasswordData[file.Length];
 
             for (int i = 0; i < file.Length; i++)
@@ -47,13 +43,10 @@ namespace AdventOfCode.Days
 
                 passwordDatas[i] = new PasswordData(minOccurance, maxOccurance, charToCheck, password);
             }
-
-            StarOne();
-            StarTwo();
         }
 
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             int rightPasswords = 0;
 
@@ -73,10 +66,10 @@ namespace AdventOfCode.Days
                 rightPasswords++;
             }
 
-            Console.WriteLine($"STAR ONE: Awnser: {rightPasswords}");
+            return rightPasswords.ToString();
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             int rightPasswords = 0;
 
@@ -99,7 +92,7 @@ namespace AdventOfCode.Days
                 rightPasswords++;
             }
 
-            Console.WriteLine($"STAR TWO: Awnser: {rightPasswords}");
+            return rightPasswords.ToString();
         }
     }
 }

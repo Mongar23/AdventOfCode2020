@@ -1,30 +1,25 @@
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
-using AdventOfCode.Tools;
 using System.Linq;
-using System.IO;
 using System;
 
 namespace AdventOfCode.Days
 {
-    public class DayFour : Day
+    public class DayFour : DayBase
     {
+        public override int Number => 4;
+
         private string[] data;
         private List<string> fieldPresentPassports = new List<string>();
         private string[] eyeColors = { "amb", "blu", "brn", "gry", "grn", "hzl", "oth" };
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day four...");
-
-            string file = File.ReadAllText(@".\Days\Data\DayFour.txt");
-            data = file.Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            StarOne();
-            StarTwo();
+            base.Initialize();
+            data = GetInputAsFile().Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             foreach (string passport in data)
             {
@@ -40,7 +35,7 @@ namespace AdventOfCode.Days
             }
 
 
-            Console.WriteLine($"STAR ONE: Awnser: {fieldPresentPassports.Count}");
+            return fieldPresentPassports.Count.ToString();
         }
 
         private struct Passport
@@ -65,7 +60,7 @@ namespace AdventOfCode.Days
             }
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             List<Passport> passports = new List<Passport>();
             int validPassports = 0;
@@ -178,7 +173,7 @@ namespace AdventOfCode.Days
                 validPassports++;
             }
 
-            Console.WriteLine($"STAR TWO: Awnser: {validPassports}");
+            return validPassports.ToString();
         }
     }
 }

@@ -6,21 +6,19 @@ using System;
 
 namespace AdventOfCode.Days
 {
-    public class DaySix : Day
+    public class DaySix : DayBase
     {
+        public override int Number => 6;
         private string[] data;
+
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day six...");
-
-            data = File.ReadAllText(@".\Days\Data\DaySix.txt").Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-
-            StarOne();
-            StarTwo();
+            base.Initialize();
+            data = GetInputAsFile().Split(new string[] { "\r\n\r\n" }, StringSplitOptions.RemoveEmptyEntries);
         }
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             int sumOfYes = 0;
 
@@ -31,10 +29,10 @@ namespace AdventOfCode.Days
                 sumOfYes += trimmedGroup.Distinct().Count();
             }
 
-            Console.WriteLine($"STAR ONE: Awnser: {sumOfYes}");
+            return sumOfYes.ToString();
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             int sumOfSimmilarAwnsers = 0;
 
@@ -70,7 +68,7 @@ namespace AdventOfCode.Days
                 }
             }
 
-            Console.WriteLine($"STAR Two: Awnser: {sumOfSimmilarAwnsers}");
+            return sumOfSimmilarAwnsers.ToString();
         }
     }
 }

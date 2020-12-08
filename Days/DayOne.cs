@@ -1,30 +1,25 @@
-using System;
-using System.IO;
-using AdventOfCode.Tools;
-
 namespace AdventOfCode.Days
 {
-    public class DayOne : Day
+    public class DayOne : DayBase
     {
         private int[] data;
 
+        public override int Number => 1;
+
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day one...");
+            base.Initialize();
 
-            var file = File.ReadAllLines(@".\Days\Data\DayOne.txt");
-            data = new int[file.Length];
+            string[] dataAsString = GetInputAsLines();
+            data = new int[dataAsString.Length];
 
-            for (int i = 0; i < file.Length; i++)
+            for (int i = 0; i < dataAsString.Length; i++)
             {
-                data[i] = int.Parse(file[i]);
+                data[i] = int.Parse(dataAsString[i]);
             }
-
-            StarOne();
-            StarTwo();
         }
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             for (int i = 0; i < data.Length; i++)
             {
@@ -34,13 +29,14 @@ namespace AdventOfCode.Days
 
                     int sum = data[i] + data[j];
                     if (sum != 2020) continue;
-                    Console.WriteLine($"STAR ONE: Awnser: {data[i] * data[j]}");
-                    return;
+                    return (data[i] * data[j]).ToString();
                 }
             }
+
+            return "NO AWNSER FOUND";
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             for (int i = 0; i < data.Length; i++)
             {
@@ -54,11 +50,12 @@ namespace AdventOfCode.Days
 
                         int sum = data[i] + data[j] + data[k];
                         if (sum != 2020) continue;
-                        Console.WriteLine($"STAR TWO: Awnser: {data[i] * data[j] * data[k]}");
-                        return;
+                        return (data[i] * data[j] * data[k]).ToString();
                     }
                 }
             }
+
+            return "NO AWNSER FOUND";
         }
     }
 }

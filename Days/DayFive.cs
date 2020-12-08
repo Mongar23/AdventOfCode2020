@@ -1,23 +1,20 @@
 using System.Collections.Generic;
 using AdventOfCode.Tools;
-using System.IO;
 using System;
 
 namespace AdventOfCode.Days
 {
-    public class DayFive : Day
+    public class DayFive : DayBase
     {
+        public override int Number => 5;
+
         private string[] data;
         private List<BoardingPass> boardingPasses = new List<BoardingPass>();
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day five...");
-
-            data = File.ReadAllLines(@".\Days\Data\DayFive.txt");
-
-            StarOne();
-            StarTwo();
+            base.Initialize();
+            data = GetInputAsLines();
         }
 
         private struct BoardingPass
@@ -35,7 +32,7 @@ namespace AdventOfCode.Days
             }
         }
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             int FindRow(string row)
             {
@@ -114,10 +111,10 @@ namespace AdventOfCode.Days
                 highestId = boardingPass.Id;
             }
 
-            Console.WriteLine($"STAR ONE: Awnser: {highestId}");
+            return highestId.ToString();
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             List<int> boardingPassIds = boardingPasses.ConvertAll(boardingPass => boardingPass.Id);
             int seatId = 0;
@@ -129,7 +126,7 @@ namespace AdventOfCode.Days
                 seatId = boardingPasses[i].Id + 1;
             }
 
-            Console.WriteLine($"STAR TWO: Awnser: {seatId}");
+            return seatId.ToString();
         }
     }
 }

@@ -6,8 +6,10 @@ using System;
 
 namespace AdventOfCode.Days
 {
-    public class DaySeven : Day
+    public class DaySeven : DayBase
     {
+        public override int Number => 7;
+
         private const string SHINY_GOLD = "shiny gold";
         private const string NO_OTHER = "no other";
         private const string DOT = ".";
@@ -17,10 +19,9 @@ namespace AdventOfCode.Days
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day seven...");
+            base.Initialize();
 
-            data = File.ReadAllLines(@".\Days\Data\DaySeven.txt");
-            // data = File.ReadAllLines(@".\Days\Tests\DaySeven.txt");
+            data = GetInputAsLines();
 
             foreach (string line in data)
             {
@@ -55,9 +56,6 @@ namespace AdventOfCode.Days
                     bag.carryingBags.Add(carried, carryingAmount);
                 }
             }
-
-            StarOne();
-            StarTwo();
         }
 
         private class Bag
@@ -72,7 +70,7 @@ namespace AdventOfCode.Days
             }
         }
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             int canCarryGoldCount = 0;
             Queue<Bag> queue = new Queue<Bag>();
@@ -97,10 +95,10 @@ namespace AdventOfCode.Days
                 }
             }
 
-            Console.WriteLine($"STAR ONE: Awnser: {canCarryGoldCount}");
+            return canCarryGoldCount.ToString();
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             int carringBags = 0;
             Queue<Bag> queue = new Queue<Bag>();
@@ -128,10 +126,7 @@ namespace AdventOfCode.Days
                 }
             }
 
-            Console.WriteLine($"STAR TWO: Awnser: {carringBags}");
+            return carringBags.ToString();
         }
     }
-
-    // 192000000 is too high.
-    // 62 is ?.
 }

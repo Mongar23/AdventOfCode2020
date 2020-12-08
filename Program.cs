@@ -1,34 +1,55 @@
-﻿using AdventOfCode.Days;
+﻿using Debug = AdventOfCode.Tools.Debug;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Reflection;
+using System.Linq;
+using System;
 
 namespace AdventOfCode
 {
     class Program
     {
+        private static List<DayBase> days;
+
         static void Main(string[] args)
         {
-            var dayOne = new DayOne();
-            dayOne.Initialize();
+            List<DayBase> unsortedList = new List<DayBase>();
 
-            var dayTwo = new DayTwo();
-            dayTwo.Initialize();
+            foreach (Type type in Assembly.GetAssembly(typeof(DayBase)).GetTypes().Where(classType => classType.IsClass && !classType.IsAbstract && classType.IsSubclassOf(typeof(DayBase))))
+            {
+                DayBase day = (DayBase)Activator.CreateInstance(type);
+                unsortedList.Add(day);
+            }
 
-            var dayThree = new DayThree();
-            dayThree.Initialize();
+            days = unsortedList.OrderBy(day => day.Number).ToList();
 
-            var dayFour = new DayFour();
-            dayFour.Initialize();
 
-            var dayFive = new DayFive();
-            dayFive.Initialize();
+            foreach (DayBase day in days)
+            {
+                day.Initialize();
 
-            var daySix = new DaySix();
-            daySix.Initialize();
+                try
+                {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
 
-            var daySeven = new DaySeven();
-            daySeven.Initialize();
+                    Debug.Awnser($"STAR 1: {day.StarOne()}", stopwatch.Elapsed.TotalMilliseconds);
+                }
+                catch (NotImplementedException) { Debug.Waring("Star one is not implemented."); }
 
-            var dayEight = new DayEight();
-            dayEight.Initialize();
+                try
+                {
+                    Stopwatch stopwatch = new Stopwatch();
+                    stopwatch.Start();
+
+                    Debug.Awnser($"STAR 2: {day.StarTwo()}", stopwatch.Elapsed.TotalMilliseconds);
+                }
+                catch (NotImplementedException) { Debug.Waring("Star two is not implemented."); }
+
+                Console.Write("\n");
+            }
+
+            Debug.End();
         }
     }
 }

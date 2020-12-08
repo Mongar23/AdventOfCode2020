@@ -1,26 +1,21 @@
 using System.Collections.Generic;
 using AdventOfCode.Tools;
-using System.IO;
-using System;
 
 namespace AdventOfCode.Days
 {
-    public class DayEight : Day
+    public class DayEight : DayBase
     {
+        public override int Number => 8;
+
         private string[] data;
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day eight...");
-
-            data = File.ReadAllLines(@".\Days\Data\DayEight.txt");
-            // data = File.ReadAllLines(@".\Days\Tests\DayEight_Test.txt");
-
-            StarOne();
-            StarTwo();
+            base.Initialize();
+            data = GetInputAsLines();
         }
 
-        protected override void StarOne()
+        public override string StarOne()
         {
             int accumulator = 0;
             List<int> vistitedOperationsIndex = new List<int>();
@@ -29,8 +24,7 @@ namespace AdventOfCode.Days
             {
                 if (vistitedOperationsIndex.Contains(i))
                 {
-                    Console.WriteLine($"STAR ONE: Awnser: {accumulator}");
-                    return;
+                    return accumulator.ToString();
                 }
 
                 string[] operation = data[i].Split(' ');
@@ -53,9 +47,11 @@ namespace AdventOfCode.Days
                         break;
                 }
             }
+
+            return "NO AWNSER FOUND";
         }
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             int accumulator = 0;
 
@@ -91,9 +87,7 @@ namespace AdventOfCode.Days
                                 break;
                         }
                     }
-
-                    Console.WriteLine($"STAR TWO: Awnser: {accumulator}");
-                    return;
+                    return accumulator.ToString();
                 }
             }
 
@@ -127,6 +121,8 @@ namespace AdventOfCode.Days
 
                 return true;
             }
+
+            return "NO AWNSER FOUND";
         }
     }
 }

@@ -1,18 +1,19 @@
-using AdventOfCode.Tools;
 using System.IO;
 using System;
 
 namespace AdventOfCode.Days
 {
-    public class DayThree : Day
+    public class DayThree : DayBase
     {
+        public override int Number => 3;
+
         char[,] data;
 
         public override void Initialize()
         {
-            Debug.Info("----------------Initializing day three...");
+            base.Initialize();
 
-            string[] file = File.ReadAllLines(@".\Days\Data\DayThree.txt");
+            string[] file = GetInputAsLines();
             data = new char[file[0].Length, file.Length];
 
             for (int i = 0; i < file.Length; i++)
@@ -22,21 +23,14 @@ namespace AdventOfCode.Days
                     data[j, i] = file[i][j];
                 }
             }
-
-            StarOne();
-            StarTwo();
         }
 
-        protected override void StarOne()
-        {
-            Console.WriteLine($"STAR ONE: Awnser: {CheckPath(3, 1)}");
-        }
+        public override string StarOne() => CheckPath(3, 1).ToString();
 
-        protected override void StarTwo()
+        public override string StarTwo()
         {
             int totalTreeEncounters = CheckPath(1, 1) * CheckPath(3, 1) * CheckPath(5, 1) * CheckPath(7, 1) * CheckPath(1, 2);
-
-            Console.WriteLine($"STAR TWO: Awnser: {totalTreeEncounters}");
+            return totalTreeEncounters.ToString();
         }
 
         private int CheckPath(int right, int down)

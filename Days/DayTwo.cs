@@ -24,6 +24,8 @@ namespace AdventOfCode.Days
 
         public override void Initialize()
         {
+            base.Initialize();
+
             string[] file = GetInputAsLines();
             passwordDatas = new PasswordData[file.Length];
 

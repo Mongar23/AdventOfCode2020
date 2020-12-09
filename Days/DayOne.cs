@@ -10,13 +10,7 @@ namespace AdventOfCode.Days
         {
             base.Initialize();
 
-            string[] dataAsString = GetInputAsLines();
-            data = new int[dataAsString.Length];
-
-            for (int i = 0; i < dataAsString.Length; i++)
-            {
-                data[i] = int.Parse(dataAsString[i]);
-            }
+            data = GetInputAsIntArray();
         }
 
         public override string StarOne()

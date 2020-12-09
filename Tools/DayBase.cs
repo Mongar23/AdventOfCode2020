@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using AdventOfCode.Tools;
 using System.IO;
-using System;
 
 namespace AdventOfCode
 {
@@ -10,6 +10,24 @@ namespace AdventOfCode
 
         protected string[] GetInputAsLines() => File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt");
         protected string GetInputAsFile() => File.ReadAllText($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt");
+        protected int[] GetInputAsIntArray()
+        {
+            List<int> data = new List<int>();
+
+            foreach (string line in File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt"))
+            {
+                try
+                {
+                    data.Add(int.Parse(line));
+                }
+                catch (System.OverflowException)
+                {
+                    Debug.Error($"{line} is either too high or too low for an Int32");
+                }
+            }
+
+            return data.ToArray();
+        }
 
         public virtual void Initialize()
         {

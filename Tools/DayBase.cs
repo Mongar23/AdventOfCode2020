@@ -31,7 +31,7 @@ namespace AdventOfCode
 
         public virtual void Initialize()
         {
-            Debug.Info($"Initializing day {Number}");
+            Debug.Initalizing(Number);
         }
 
         public abstract string StarOne();

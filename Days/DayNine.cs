@@ -68,17 +68,18 @@ namespace AdventOfCode.Days
             int firstIndex = 0;
             int lastIndex = 1;
 
-            while (firstIndex < data.Length)
+            while (firstIndex < invalidIndex)
             {
                 List<long> checking = data.ToList().GetRange(firstIndex, (lastIndex - firstIndex) + 1);
                 long sum = checking.Sum();
 
                 if (sum == invalidValue)
                 {
-                    return (checking.Min() + checking.Max()).ToString();
+                    checking.Sort();
+                    return (checking.First() + checking.Last()).ToString();
                 }
 
-                if (lastIndex < data.Length - 1)
+                if (lastIndex < invalidIndex - 1)
                 {
                     lastIndex++;
                 }

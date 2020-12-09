@@ -14,7 +14,7 @@ namespace AdventOfCode.Tools
 
         public static void Info(string message)
         {
-            Console.ForegroundColor = ConsoleColor.DarkGray;
+            Console.ForegroundColor = ConsoleColor.Gray;
             Console.Write("[INFO] ");
             Console.ResetColor();
             Console.WriteLine(message);
@@ -37,6 +37,14 @@ namespace AdventOfCode.Tools
             Console.ForegroundColor = ConsoleColor.DarkGray;
             Console.WriteLine($"completed in {completedIn} ms");
             Console.ResetColor();
+        }
+
+        public static void Initalizing(int dayNumber)
+        {
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.Write("[INITIALIZING] ");
+            Console.ResetColor();
+            Console.WriteLine($"Day {dayNumber}... ");
         }
 
         public static void End()

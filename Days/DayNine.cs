@@ -18,7 +18,7 @@ namespace AdventOfCode.Days
         {
             base.Initialize();
 
-            string[] file = File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt");
+            string[] file = File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Data\{GetType().Name}.txt");
             data = new long[file.Length];
 
             for (int i = 0; i < file.Length; i++)

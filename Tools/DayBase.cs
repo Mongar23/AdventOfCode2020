@@ -8,13 +8,13 @@ namespace AdventOfCode
     {
         public abstract int Number { get; }
 
-        protected string[] GetInputAsLines() => File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt");
-        protected string GetInputAsFile() => File.ReadAllText($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt");
+        protected string[] GetInputAsLines() => File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Data\{GetType().Name}.txt");
+        protected string GetInputAsFile() => File.ReadAllText($@"{Directory.GetCurrentDirectory()}\Data\{GetType().Name}.txt");
         protected int[] GetInputAsIntArray()
         {
             List<int> data = new List<int>();
 
-            foreach (string line in File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Days\Data\{GetType().Name}.txt"))
+            foreach (string line in File.ReadAllLines($@"{Directory.GetCurrentDirectory()}\Data\{GetType().Name}.txt"))
             {
                 try
                 {

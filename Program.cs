@@ -49,7 +49,11 @@ namespace AdventOfCode
                 Console.Write("\n");
             }
 
-            Debug.End();
+            try
+            {
+                Debug.End();
+            }
+            catch (InvalidOperationException) { }
         }
     }
 }
